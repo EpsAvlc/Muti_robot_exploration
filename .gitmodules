@@ -1,0 +1,31 @@
+[submodule "catkin_simple"]
+    path = src/catkin_simple
+    url = "git@github.com:catkin/catkin_simple.git"
+
+[submodule "eigen_catkin"]
+    path = src/eigen_catkin
+    url = "git@github.com:ethz-asl/eigen_catkin.git"
+
+[submodule "eigen_checks"]
+    path = src/eigen_checks
+    url = "git@github.com:ethz-asl/eigen_checks.git"
+
+[submodule "gflags_catkin"]
+    path = src/gflags_catkin
+    url = "git@github.com:ethz-asl/gflags_catkin.git"
+
+[submodule "glog_catkin"]
+    path = src/glog_catkin
+    url = "git@github.com:ethz-asl/glog_catkin.git"
+
+[submodule "minkindr"]
+    path = src/minkindr
+    url = "git@github.com:ethz-asl/minkindr.git"
+
+[submodule "minkindr_ros"]
+    path = src/minkindr_ros
+    url = "git@github.com:ethz-asl/minkindr_ros.git"
+
+[submodule "voxblox_noted"]
+    path = src/voxblox
+    url = "git@github.com:EpsAvlc/voxblox_noted.git"
