@@ -1,11 +1,11 @@
 <launch>
     <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
     <arg name="tb_1_x_pos" default="-2.0"/>
-    <arg name="tb_1_y_pos" default="-0.5"/>
+    <arg name="tb_1_y_pos" default="0.5"/>
     <arg name="tb_1_z_pos" default="0.0"/>
 
     <arg name="tb_2_x_pos" default="-2.0"/>
-    <arg name="tb_2_y_pos" default="0.5"/>
+    <arg name="tb_2_y_pos" default="-0.5"/>
     <arg name="tb_2_z_pos" default="0.0"/>
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -28,4 +28,38 @@
 
         <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"  args="-urdf -model turtlebot3_tb_2 -x $(arg tb_2_x_pos) -y $(arg tb_2_y_pos) -z $(arg tb_2_z_pos) -param robot_description" />
     </group>
+
+    <node pkg="tf" type="static_transform_publisher" 
+    name="world2tb1_odom" args="0 0 0 0 0 0 world tb_1/odom 10" />
+
+    <node pkg="tf" type="static_transform_publisher" 
+    name="tb1_footprint2tb1_cam" args="0 0 0 -1.57 0 -1.57 tb_1/base_footprint tb_1/camera_rgb_optical_frame 10" />
+
+    <node pkg="tf" type="static_transform_publisher" 
+    name="tb1_odom2tb1_odom" args="0 0 0 0 0 0 tb_1/odom tb_2/odom 10" />
+
+    <node pkg="tf" type="static_transform_publisher" 
+    name="tb2_footprint2tb2_cam" args="0 0 0 -1.57 0 -1.57 tb_2/base_footprint tb_2/camera_rgb_optical_frame 10" />
+
+    <!-- generate TSDF -->
+
+    <!-- <node name="voxblox_node" pkg="voxblox_ros" type="tsdf_server" output="screen" clear_params="true">
+        <remap from="pointcloud" to="/tb_1/camera/depth/points"/>
+        <param name="tsdf_voxel_size" value="0.20" />
+        <param name="tsdf_voxels_per_side" value="16" />
+        <param name="voxel_carving_enabled" value="true" />
+        <param name="color_mode" value="color" />
+        <param name="use_tf_transforms" value="true" />
+        <param name="world_frame" value="world" />
+        <param name="update_mesh_every_n_sec" value="1.0" />
+        <param name="method" value="fast" />
+        <param name="use_const_weight" value="false" />
+        <param name="allow_clear" value="true" />
+        <param name="verbose" value="true" />
+
+        <param name="publish_pointclouds" value="true" />
+        <param name="publish_slices" value="true" />
+    </node> -->
+
+
 </launch>
